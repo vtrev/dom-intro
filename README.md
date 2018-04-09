@@ -1,6 +1,6 @@
 # dom-intro
 
-A brief introduction to the browser Document Object Model (DOM)
+This is  a brief introduction to the browser Document Object Model (DOM)
 
 ## Usefull things you can do with the DOM
 
