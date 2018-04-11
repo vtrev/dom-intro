@@ -1,18 +1,106 @@
 // get a reference to the sms or call radio buttons
 
+
 // get refences to all the settings fields
 
-//get a reference to the add button
+var callSetting = document.querySelector('.callCostSetting');
+var smsSetting = document.querySelector('.smsCostSetting');
+var warningSetting = document.querySelector('.warningLevelSetting');
+var criticalSetting = document.querySelector('.criticalLevelSetting');
+var totalSettings = document.querySelector('.totalSettings');
+var criticalSettingValue = 0;
 
-//get a reference to the 'Update settings' button
 
-// create a variables that will keep track of all the settings
+// c variables that will keep track of all three totals.
+var billSettingTotal = 0;
+var smsSetTotal = 0;
+var callSetTotal = 0;
 
-// create a variables that will keep track of all three totals.
+//a reference to the add button
+var addButtonSet = document.querySelector('.addWithSetting');
+
+//reference to the 'Update settings' button
+var updateBtn = document.querySelector('.updateSettings');
+
+
+function settingsTotal() {
+    var checkedRadioBtn1 = document.querySelector("input[name='billItemTypeWithSettings']:checked");
+
+    if (checkedRadioBtn1.value === "call") {
+        if (billSettingTotal < parseFloat(criticalSetting.value)) {
+            callSetTotal += parseFloat(callSetting.value);
+        }
+        if (billSettingTotal > parseFloat(criticalSetting.value)) {
+            callSetTotal += 0;
+
+        }
+
+
+    } else if (checkedRadioBtn1.value === "sms") {
+        if (billSettingTotal < parseFloat(criticalSetting.value)) {
+            smsSetTotal += parseFloat(smsSetting.value);
+        } else if (billSettingTotal >= parseFloat(criticalSetting.value)) {
+            smsSetTotal += 0;
+            document.querySelector('.totalSettings').classList.add('danger');
+        }
+
+    }
+
+    document.querySelector('.callTotalSettings').innerHTML = callSetTotal.toFixed(2);
+    document.querySelector('.smsTotalSettings').innerHTML = smsSetTotal.toFixed(2);
+    classColor();
+}
+
+function classColor() {
+    billSettingTotal = callSetTotal + smsSetTotal;
+
+    if ((billSettingTotal >= parseFloat(warningSetting.value)) && (billSettingTotal < parseFloat(criticalSetting.value))) {
+        if (document.querySelector('.totalSettings').classList.contains('danger')) {
+            document.querySelector('.totalSettings').classList.remove('danger');
+        }
+
+        document.querySelector('.totalSettings').classList.add('warning');
+
+    } else if (billSettingTotal >= parseFloat(criticalSetting.value)) {
+        if (document.querySelector('.totalSettings').classList.contains('warning')) {
+            document.querySelector('.totalSettings').classList.remove('warning');
+        }
+
+        document.querySelector('.totalSettings').classList.add('danger');
+    }
+
+    finTotal();
+    totalSettings.innerHTML = billSettingTotal.toFixed(2);
+}
+
+function finTotal() {
+    if (billSettingTotal > criticalSettingValue) {
+        var over = billSettingTotal - criticalSettingValue;
+        billSettingTotal = billSettingTotal - over;
+    }
+}
+
+
+
+
+function settings() {
+    var smsSettingValue = smsSetting.value;
+    var callSettingValue = callSetting.value;
+    var warningSettingValue = warningSetting.value;
+    criticalSettingValue = criticalSetting.value;
+
+    //totalSettings.innerHTML = billSettingTotal.toFixed(2);
+}
 
 //add an event listener for when the 'Update settings' button is pressed
 
-//add an event listener for when the add button is pressed
+updateBtn.addEventListener('click', settings);
+addButtonSet.addEventListener('click', settingsTotal);
+
+
+
+
+
 
 //in the event listener get the value from the billItemTypeRadio radio buttons
 // * add the appropriate value to the call / sms total
