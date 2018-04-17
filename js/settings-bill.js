@@ -82,7 +82,7 @@ function finTotal() {
 
 
 
-
+//assigning all
 function settings() {
     var smsSettingValue = smsSetting.value;
     var callSettingValue = callSetting.value;
