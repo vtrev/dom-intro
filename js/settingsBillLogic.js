@@ -1,4 +1,4 @@
-var settingsBillLogic = function () {
+var SettingsBillLogic = function () {
     //sms and call totals init 
     var smsSetTotal = 0;
     var callSetTotal = 0;

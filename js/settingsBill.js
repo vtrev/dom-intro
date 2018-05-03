@@ -1,4 +1,4 @@
-    var settingsBill = settingsBillLogic();
+    var settingsBill = SettingsBillLogic();
 
     //a reference to the add button
     var addButtonSet = document.querySelector('.addWithSetting');
