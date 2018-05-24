@@ -9,10 +9,10 @@ var total = document.querySelector('.billTotal');
 //function to run on button click
 //var get = compute1(inputString);
 //function that gets and returns the billType from the input box
-var getInput = function(){
+var getInput = function () {
     var billInput = document.querySelector('.billString');
     var inputValue = billInput.value;
-    
+
     //var inputArray = inputValue.split(",");
     return {
         inputValue: inputValue
@@ -26,11 +26,11 @@ var getInput = function(){
 //var billArray = inputString.split(",");
 
 
-function setStyle1(billTotal){
+function setStyle1(billTotal) {
     //adding a differnt color class for different bill totals
     if (billTotal < 20) {
         if (document.querySelector('.billTotal').classList.contains('warning' || 'danger')) {
-            document.querySelector('.billTotal').classList.remove( 'danger' ,'warning' );
+            document.querySelector('.billTotal').classList.remove('danger', 'warning');
         }
         document.querySelector('.billTotal').classList.add('noStyle');
 
@@ -54,26 +54,12 @@ function setStyle1(billTotal){
 }
 
 
-
-
-
-
-
-
-
-
-
 compBtn.addEventListener('click', function () {
     var get = getInput();
-    var billTotal  = calculateBill(get.inputValue).total;
+    var billTotal = calculateBill(get.inputValue).total;
 
-    //console.log(calculateBill(get.inputArray));
     document.querySelector('.billTotal').innerHTML = billTotal.toFixed(2)
 
     setStyle1(billTotal);
 
 });
-
-
-
-

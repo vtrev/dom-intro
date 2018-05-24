@@ -12,12 +12,21 @@ function getBillType() {
     }
 }
 
+function totals1Init() {
+    var totalsOneDataElement = document.getElementById("totalsOneTable");
+    var totalsOneTemplateSource = document.getElementById('totalOneTemplate').innerHTML;
+    var totalsOneTemplate = Handlebars.compile(totalsOneTemplateSource);
+    totalsOneDataElement.innerHTML = totalsOneTemplate({
+        callTotalOne: '0.00',
+        smsTotalOne: '0.00',
+        totalOne: '0.00'
+    });
 
-//console.log('entering textBill ... ');
+}
+totals1Init();
 
-//update the totals that is displayed on the screen.  
+//update the totals that is displayed on the screen using Handlebars.  
 function setTotals() {
-    console.log('setting totals...')
     var totalsDataElement = document.getElementById("totalsOneTable");
     var totalsOneTemplateSource = document.getElementById('totalOneTemplate').innerHTML;
     var totalsOneTemplate = Handlebars.compile(totalsOneTemplateSource);
@@ -25,12 +34,8 @@ function setTotals() {
     totals.callTotalOne = textBill.get().call;
     totals.smsTotalOne = textBill.get().sms;
     totals.totalOne = textBill.get().total;
-    console.log(totals);
     var totalsOneHTML = totalsOneTemplate(totals);
     totalsDataElement.innerHTML = totalsOneHTML;
-
-
-
 }
 
 function setStyle() {
@@ -53,18 +58,14 @@ function setStyle() {
     }
 }
 
-
-
 //an event listener for when the add button is pressed
 
 textTotalAddBtn.addEventListener('click', function run() {
         getBillType();
         var billTypeEntered = getBillType().billType;
         textBill.compute(billTypeEntered);
-        // getTotals();
         setTotals();
         setStyle();
-
     }
 
 );

@@ -4,24 +4,47 @@ var radioAddBtn = document.querySelector('.radioBillAddBtn');
 // a reference to the radioBill total element
 var radioTotal = document.querySelector('.totalTwo');
 
+function totalsInit() {
+    var totalsTwoDataElement = document.getElementById("totalsTwoTable");
+    var totalsTwoTemplateSource = document.getElementById('totalTwoTemplate').innerHTML;
+    var totalsTwoTemplate = Handlebars.compile(totalsTwoTemplateSource);
+    totalsTwoDataElement.innerHTML = totalsTwoTemplate({
+        callTotalTwo: '0.00',
+        smsTotalTwo: '0.00',
+        totalTwo: '0.00'
+    });
+
+}
+totalsInit();
+
+
 
 function getRadioBtn() {
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
 
     return {
-        billType: checkedRadioBtn.value 
+        billType: checkedRadioBtn.value
     }
 }
 
-function setRadioTotals(){
+function setRadioTotals() {
 
     // sum up the totals and update the total displayed on the screen
 
-    document.querySelector('.callTotalTwo').innerHTML = radioBill.get().call;
-    document.querySelector('.smsTotalTwo').innerHTML = radioBill.get().sms;
-    radioTotal.innerHTML = radioBill.get().total;
-
+    var totalsTwoDataElement = document.getElementById("totalsTwoTable");
+    var totalsTwoTemplateSource = document.getElementById('totalTwoTemplate').innerHTML;
+    var totalsTwoTemplate = Handlebars.compile(totalsTwoTemplateSource);
+    var totals = {}
+    totals.callTotalTwo = radioBill.get().call;
+    totals.smsTotalTwo = radioBill.get().sms;
+    totals.totalTwo = radioBill.get().total;
+    var totalsTwoHTML = totalsTwoTemplate(totals);
+    totalsTwoDataElement.innerHTML = totalsTwoHTML;
 }
+
+
+
+
 
 
 //the totalBill function to execute on button click
@@ -49,7 +72,7 @@ function applyRadioBillStyle(totalRadioBill) {
 
 //an event listener for when the add button is pressed
 
-radioAddBtn.addEventListener('click', function run(){
+radioAddBtn.addEventListener('click', function run() {
     getRadioBtn();
     var checkedRadioBtn = getRadioBtn().billType;
     radioBill.compute(checkedRadioBtn);

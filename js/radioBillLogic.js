@@ -5,15 +5,12 @@ var RadioBillLogic = function () {
     var smsTotalOne = 0;
 
     var computeRadio = function (checkedRadioBtn) {
-        console.log('now compiting radioBill..');
         if (checkedRadioBtn === "call") {
             callsTotalOne += 2.75;
-            console.log(checkedRadioBtn);
 
         }
         if (checkedRadioBtn === "sms") {
             smsTotalOne += 0.75;
-            console.log(checkedRadioBtn);
 
         }
     }

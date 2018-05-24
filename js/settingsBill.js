@@ -30,8 +30,7 @@
 
     //function to set the calcutalted values to the html
     var setSettingsBill = function () {
-        console.log('now setting values to HTML ');
-        console.log('bill call: ' + settingsBill.bill.call);
+
         document.querySelector('.callTotalSettings').innerHTML = parseFloat(settingsBill.getCall()).toFixed(2);
 
         document.querySelector('.smsTotalSettings').innerHTML = parseFloat(settingsBill.getSms()).toFixed(2);
@@ -42,7 +41,7 @@
 
     //apply color to the total 
     function applySettingsColor() {
-        console.log('now applaying color ')
+
         var billSettingTotal = settingsBill.total();
         var warning = getDom().warningSetting;
         var criticalSetting = getDom().criticalSetting;
