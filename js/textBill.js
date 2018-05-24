@@ -17,11 +17,19 @@ function getBillType() {
 
 //update the totals that is displayed on the screen.  
 function setTotals() {
-console.log('setting totals...')
+    console.log('setting totals...')
+    var totalsDataElement = document.getElementById("totalsOneTable");
+    var totalsOneTemplateSource = document.getElementById('totalOneTemplate').innerHTML;
+    var totalsOneTemplate = Handlebars.compile(totalsOneTemplateSource);
+    var totals = {}
+    totals.callTotalOne = textBill.get().call;
+    totals.smsTotalOne = textBill.get().sms;
+    totals.totalOne = textBill.get().total;
+    console.log(totals);
+    var totalsOneHTML = totalsOneTemplate(totals);
+    totalsDataElement.innerHTML = totalsOneHTML;
 
-    document.querySelector('.callTotalOne').innerHTML = textBill.get().call;
-    document.querySelector('.smsTotalOne').innerHTML =textBill.get().sms;
-    document.querySelector('.totalOne').innerHTML = textBill.get().total;
+
 
 }
 
@@ -49,14 +57,14 @@ function setStyle() {
 
 //an event listener for when the add button is pressed
 
-textTotalAddBtn.addEventListener('click', function run(){
+textTotalAddBtn.addEventListener('click', function run() {
         getBillType();
         var billTypeEntered = getBillType().billType;
         textBill.compute(billTypeEntered);
         // getTotals();
         setTotals();
         setStyle();
-    
-    }   
-  
+
+    }
+
 );
