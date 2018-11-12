@@ -1,11 +1,7 @@
     var settingsBill = SettingsBillLogic();
 
-    //a reference to the add button
     var addButtonSet = document.querySelector('.addWithSetting');
-
-    //reference to the 'Update settings' button
     var updateBtn = document.querySelector('.updateSettings');
-    //reference to the total
     var totalSettings = document.querySelector('.totalSettings');
 
     //function to get and return dom elements and return their values
