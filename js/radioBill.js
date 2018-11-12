@@ -17,8 +17,6 @@ function totalsInit() {
 }
 totalsInit();
 
-
-
 function getRadioBtn() {
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
 

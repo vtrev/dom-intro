@@ -1,6 +1,4 @@
 var TextBillLogic = function () {
-    console.log('entering textBillLogic ...');
-
     //initialising calculating varibles
     var callsTotal = 0.00;
     var smsTotal = 0.00;
